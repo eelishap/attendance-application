@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public showAttendanceModal: boolean = false;
+  private userId: number;
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm();
-    this.showAttendanceModal = localStorage.getItem('userId') ? true : false;
+    this.userId = Number(localStorage.getItem('userId'));
+    this.showAttendanceModal = this.userId ? true : false;
   }
 
   public createForm(): FormGroup {
@@ -37,12 +39,30 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe((res: any) => {
       if(res) {
-        // this.route.navigate(['/dashboard'])
         localStorage.setItem('userId', res.id);
         this.showAttendanceModal = true;
       } else {
         alert('Authentication Failed')
       }
     });
+  }
+
+  public logout(): void {
+    const checkIn = localStorage.getItem('checkIn');
+    const checkOut = localStorage.getItem('checkOut');
+    this.showAttendanceModal = false;
+
+    if(checkIn && !checkOut) {
+      const data = {
+        checkIn: checkIn,
+        checkOut: new Date().toString()
+      }
+      this.authService.logAttendance(this.userId, data).subscribe(res => {
+        if(res) {
+          localStorage.clear();
+          alert('you have checked out successfully')
+        }
+      })
+    }
   }
 }

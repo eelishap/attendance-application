@@ -4,7 +4,7 @@
   align-items: center;
   height: 100vh;
 
-  @media (max-width: 450px) {
+  @media (max-width: 650px) {
     flex-direction: column;
     gap: 12px;
     justify-content: center;
@@ -40,6 +40,12 @@
   .dashboard {
     &--btn {
       background: #475993;
+    }
+  }
+
+  .logout {
+    &--btn {
+      background: #ee001a;
     }
   }
 }
