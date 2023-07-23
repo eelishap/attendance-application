@@ -1,9 +1,11 @@
-<div>
-  <button (click)="checkIn()">check in</button>
-</div>
-<div>
-  <button (click)="checkOut()">check out</button>
-</div>
-<div>
-  <button (click)="navigateTo('dashboard')">Go to Dashboard</button>
+<div class="attendance-container">
+  <section class="check-in">
+    <button class="check-in--btn btn" (click)="checkIn()">check in</button>
+  </section>
+  <section class="check-out">
+    <button class="check-out--btn btn" (click)="checkOut()">check out</button>
+  </section>
+  <section class="dashboard">
+    <button class="dashboard--btn btn" (click)="navigateTo('dashboard')">Go to Dashboard</button>
+  </section>
 </div>
