@@ -1,4 +1,9 @@
-<div *ngFor="let data of attendanceData" class="list">
-  <div>{{ data.checkIn }}</div>
-  <div>{{ data.checkOut }}</div>
+<div>
+  <div (click)="navigateTo('')">
+    Go Back
+  </div>
+  <div *ngFor="let data of attendanceData" class="list">
+    <div>{{ data.checkIn }}</div>
+    <div>{{ data.checkOut }}</div>
+  </div>
 </div>

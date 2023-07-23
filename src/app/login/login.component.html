@@ -1,4 +1,4 @@
-<div class="login-container">
+<div *ngIf="!showAttendanceModal; else attendanceModal" class="login-container">
   <div class="login-card">
     <h1>Login</h1>
     <form [formGroup]="loginForm" (submit)="login()">
@@ -19,3 +19,7 @@
     </form>
   </div>
 </div>
+
+<ng-template #attendanceModal>
+  <app-attendance></app-attendance>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,8 @@ export class DashboardComponent implements OnInit {
   public attendanceData: any;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,6 +21,10 @@ export class DashboardComponent implements OnInit {
     this.authService.getData(Number(userId)).subscribe(res => {
       this.attendanceData = res;
     })
+  }
+
+  public navigateTo(url: string): void {
+    this.router.navigate([url]);
   }
 
 }

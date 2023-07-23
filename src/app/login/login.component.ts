@@ -11,6 +11,7 @@ import { AuthService } from '../shared/auth.service';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public showAttendanceModal: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm();
+    this.showAttendanceModal = localStorage.getItem('userId') ? true : false;
   }
 
   public createForm(): FormGroup {
@@ -30,19 +32,17 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    const user = {
-      username: this.loginForm.controls['username'].value,
-      password: this.loginForm.controls['password'].value
-    }
+    const username = this.loginForm.controls['username'].value;
+    const password = this.loginForm.controls['password'].value;
 
-    this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value).subscribe((res: any) => {
+    this.authService.login(username, password).subscribe((res: any) => {
       if(res) {
-        this.route.navigate(['/dashboard'])
-        localStorage.setItem('userId', res.id)
+        // this.route.navigate(['/dashboard'])
+        localStorage.setItem('userId', res.id);
+        this.showAttendanceModal = true;
       } else {
         alert('Authentication Failed')
       }
     });
   }
-
 }
