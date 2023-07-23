@@ -23,9 +23,9 @@ export class AttendanceComponent implements OnInit {
   public checkIn(): void {
     if (this.userId) {
       const now = new Date();
-      if (now.getHours() < 13 || (now.getHours() === 13 && now.getMinutes() <= 30)) {
-        console.log('Checked In:', now);
+      if (now.getHours() < 18 || (now.getHours() === 13 && now.getMinutes() <= 30)) {
         localStorage.setItem('checkIn', now.toString());
+        alert('You have checked in successfully');
       } else {
         alert('You can only check in before 1:30 PM.')
       }
@@ -43,6 +43,7 @@ export class AttendanceComponent implements OnInit {
         this.authService.logAttendance(this.userId, data).subscribe(res => {
           if(res) {
             localStorage.removeItem('checkIn');
+            alert('you have checked out successfully')
           }
         })
       } else {
