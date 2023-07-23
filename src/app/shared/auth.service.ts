@@ -23,12 +23,12 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/user`, user);
   }
 
-  checkIn(id: any, user: any) {
-    return this.http.put(`${this.baseUrl}/user/${id}`, user);
-  }
-
   getData(id: number) {
     return this.http.get(`${this.baseUrl}/user/${id}/attendance`);
+  }
+
+  public logAttendance(id: number, data: any) {
+    return this.http.post(`${this.baseUrl}/user/${id}/attendance`, data);
   }
 
   public isAuthenticated() {
