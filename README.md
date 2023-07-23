@@ -1,3 +1,3 @@
 # attendance-application
 
-## Go to Develope branch to initialize the app
+## Go to Develop branch to initialize the app
