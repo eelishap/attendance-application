@@ -1,9 +1,16 @@
-<div>
-  <div (click)="navigateTo('')">
+<div class="dashboard-wrapper">
+  <div class="back-btn" (click)="navigateTo('')">
     Go Back
   </div>
-  <div *ngFor="let data of attendanceData" class="list">
-    <div>{{ data.checkIn }}</div>
-    <div>{{ data.checkOut }}</div>
+  <div class="label">
+    <div>check-in time</div>
+    <div>check-out time</div>
+  </div>
+  <div *ngFor="let data of attendanceData" class="list-container">
+    <div class="list">
+      <div class="check-in">{{ data.checkIn | date: 'medium'}}</div>
+      <div class="check-out">{{ data.checkOut | date: 'medium' }}</div>
+    </div>
+    <div class="divider"></div>
   </div>
 </div>
